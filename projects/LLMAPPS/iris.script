@@ -1,0 +1,22 @@
+ do ##class(%SYSTEM.Process).CurrentDirectory("<#PROJECTDIR#>")
+ do $SYSTEM.OBJ.Load("./Installer.cls", "ck")
+ set sc = ##class(App.Installer).setup()
+
+ // Create Web Application
+ zn "%SYS"
+ set props("Description") = "LLM Apps"
+ set props("DispatchClass") = "ISC.DACH.LLM.REST.Dispatcher"
+ set props("NameSpace") = "LLMAPPS"
+ set props("MatchRoles") = ":%DB_LLMAPPS"
+ write ##class(Security.Applications).Create("/llm", .props)
+
+ zn "LLMAPPS"
+
+ set file = ##class(%File).%New("<#PROJECTDIR#>/HuggingfaceToken.secret" )
+ write file.Open("R")
+ set token = file.ReadLine()
+ write ##class(Ens.Config.Credentials).SetCredential("HuggingFaceToken", "Token", token)
+
+ do $System.OBJ.LoadDir("<#PROJECTDIR#>/src","ck",,1)
+ do ##class(Ens.Director).SetAutoStart("ISC.DACH.LLM.SampleProduction",1)
+ set ^EnsPortal.Settings("SuperUser","LastProduction") = "ISC.DACH.LLM.SampleProduction"

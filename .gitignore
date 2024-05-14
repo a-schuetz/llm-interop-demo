@@ -1,0 +1,27 @@
+
+
+### VisualStudioCode ###
+**/.vscode/**/*
+.vscode/**/*
+*.code-workspace
+
+# Files build from template by setup.sh
+
+Dockerfile
+docker-compose.yaml
+docker-compose.build.yaml
+docker_volume/*
+
+# Key and secret files
+
+**/*.key
+**/*.secret
+**/password.txt
+
+# Jupyter notebooks
+
+**/*.ipynb
+
+# OS files
+.DS_Store
+
