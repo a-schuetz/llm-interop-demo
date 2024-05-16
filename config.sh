@@ -14,10 +14,10 @@ WEBSERVER_PORT="2024"
 # Container name (Make sure the name is not in use)
 CONTAINER_NAME="iris-llm-demo" 
 
-# Docker Image name
+# Resulting Docker Image name
 IMAGE_NAME=$CONTAINER_NAME
 
-# Docker Image tag
+# Resulting Docker Image tag
 IMAGE_TAG="latest"
 
 # Optional: Set password for default IRIS users

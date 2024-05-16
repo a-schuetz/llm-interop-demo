@@ -20,3 +20,5 @@
  do $System.OBJ.LoadDir("<#PROJECTDIR#>/src","ck",,1)
  do ##class(Ens.Director).SetAutoStart("ISC.DACH.LLM.SampleProduction",1)
  set ^EnsPortal.Settings("SuperUser","LastProduction") = "ISC.DACH.LLM.SampleProduction"
+
+ do ##class(ISC.DACH.LLM.TestSampleClass).Setup()

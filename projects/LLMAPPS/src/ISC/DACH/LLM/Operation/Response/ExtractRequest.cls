@@ -4,7 +4,7 @@ Class ISC.DACH.LLM.Response.Operation.ExtractRequest Extends Ens.Request
 /// Model response
 Property ModelResponse As %String(MAXLEN = "");
 
-/// Seperator String
+/// Seperator String. Use "\n" as a placeholder for a new line.
 Property SeperatorString As %String(MAXLEN = 50) [ InitialExpression = "\n" ];
 
 /// Expected values (use , as seperator

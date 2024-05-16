@@ -7,16 +7,13 @@ Parameter ADAPTER;
 Parameter INVOCATION = "Queue";
 
 /// These are the production settings for this object
-Parameter SETTINGS = "Template:Prompt,Placeholder:Prompt,CaseSensitive:Prompt";
+Parameter SETTINGS = "Template:Prompt Settings,Placeholder:Prompt Settings";
 
-/// Placeholder will be replaced in prompt template by the input sequence.
+/// Placeholder will be replaced in prompt by the input sequence.
 Property Placeholder As %String(MAXLEN = 50) [ InitialExpression = "<#INPUT#>" ];
 
 /// Prompt template.
 Property Template As %String(MAXLEN = "");
-
-/// Enable case sensitive placeholder replacement
-Property CaseSensitive As %Boolean [ InitialExpression = 1 ];
 
 XData MessageMap
 {
@@ -32,7 +29,7 @@ Method OnPromptRequest(pRequest As ISC.DACH.LLM.Operation.Prompt.PromptRequest, 
     #dim tSC as %Status = $$$OK
 
     Set pResponse = ##class(ISC.DACH.LLM.Operation.Prompt.PromptResponse).%New()
-    Set pResponse.Prompt = $REPLACE(..Template, ..Placeholder, pRequest.InputSequence, 1, -1, ..CaseSensitive)
+    Set pResponse.Prompt = $REPLACE(..Template, ..Placeholder, pRequest.InputSequence)
 
     return tSC
 }

@@ -11,8 +11,8 @@ XData RuleDefinition [ XMLNamespace = "http://www.intersystems.com/rule" ]
 <rule name="Route by App">
 <constraint name="source" value=""></constraint>
 <constraint name="msgClass" value="ISC.DACH.LLM.Msg.LLMAppRequest"></constraint>
-<when condition="(ToLower(Document.App))=&quot;wordtranslate&quot;" comment="">
-<send transform="" target=",Word Translation"></send>
+<when condition="(ToLower(Document.App))=&quot;translate&quot;" comment="">
+<send transform="" target=",Translate To English"></send>
 </when>
 </rule>
 </ruleSet>

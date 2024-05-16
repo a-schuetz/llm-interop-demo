@@ -1,4 +1,4 @@
-Class ISC.DACH.LLM.Operation.Ollama.GenerateOperation Extends Ens.BusinessOperation
+Class ISC.DACH.LLM.Operation.Ollama.OllamaOperation Extends Ens.BusinessOperation
 {
 
 Parameter ADAPTER;

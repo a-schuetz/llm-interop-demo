@@ -18,13 +18,7 @@ Method OnExtractRequest(pRequest As ISC.DACH.LLM.Response.Operation.ExtractReque
 {
     #dim tSC As %Status = $$$OK
     Set pResponse = ##class(ISC.DACH.LLM.Response.Operation.ExtractResponse).%New()
-
-    if (pRequest.SeperatorString = "\n") {
-        Set tSeperator = $CHAR(10)
-    } Else {
-        Set tSeperator = pRequest.SeperatorString
-    }
-
+    Set tSeperator = $REPLACE(pRequest.SeperatorString, "\n", $CHAR(10))
     Set tResponse = $ZSTRIP($PIECE(pRequest.ModelResponse, tSeperator, 1, 1), "<>W")
     Set pResponse.ExtractedResponse = tResponse
 

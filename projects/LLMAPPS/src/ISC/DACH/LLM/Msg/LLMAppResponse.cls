@@ -1,6 +1,9 @@
 Class ISC.DACH.LLM.Msg.LLMAppResponse Extends (Ens.Response, %JSON.Adaptor)
 {
 
+/// Model that created the responses
+Property Model As %String(%JSONFIELDNAME = "response", MAXLEN = 200);
+
 /// Single app responses
 Property AppResponse As %String(%JSONFIELDNAME = "response", MAXLEN = "");
 
@@ -39,6 +42,9 @@ Storage Default
 </Value>
 <Value name="3">
 <Value>Response</Value>
+</Value>
+<Value name="4">
+<Value>Model</Value>
 </Value>
 </Data>
 <Data name="ResponseArray">

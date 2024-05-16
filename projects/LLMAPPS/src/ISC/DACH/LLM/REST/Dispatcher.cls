@@ -33,8 +33,9 @@ ClassMethod AppHandler(pApp As %String) As %Status
 		} Else {
 			set tSC  = ##class(Ens.Director).CreateBusinessService(..#SERVICENAME,.tBS)
 			do tBS.OnProcessInput(tRequest, .tResponse)
-			if '$ISOBJECT(tResponse) {
-				Do ##class(%REST.Impl).%ReportRESTError(..#HTTP400BADREQUEST,$$$ERROR(809, pApp)) 
+
+			if $CLASSNAME(tResponse) = "ISC.DACH.LLM.Msg.LLMAppError" {
+				Do ##class(%REST.Impl).%ReportRESTError(..#HTTP400BADREQUEST,$$$ERROR(5001, tResponse.ErrorMsg)) 
 				Quit
 			}
 			do tResponse.%JSONExport()
