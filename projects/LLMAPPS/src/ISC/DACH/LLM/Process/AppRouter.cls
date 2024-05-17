@@ -14,6 +14,15 @@ XData RuleDefinition [ XMLNamespace = "http://www.intersystems.com/rule" ]
 <when condition="(ToLower(Document.App))=&quot;translate&quot;" comment="">
 <send transform="" target=",Translate To English"></send>
 </when>
+<when condition="(ToLower(Document.App))=&quot;sentiment&quot;" comment="">
+<send transform="" target=",Sentiment Analysis"></send>
+</when>
+<when condition="(ToLower(Document.App))=&quot;chat&quot;" comment="">
+<send transform="" target=",Chatbot"></send>
+</when>
+<otherwise>
+<send transform="" target=",Unknown App Hanlder"></send>
+</otherwise>
 </rule>
 </ruleSet>
 </ruleDefinition>

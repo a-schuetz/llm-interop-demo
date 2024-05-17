@@ -27,7 +27,7 @@ XData ProductionDefinition
   </Item>
   <Item Name="LLM App Router" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">ISC.DACH.LLM.Process.AppRouter</Setting>
-    <Setting Target="Host" Name="ResponseFrom">Translate To English</Setting>
+    <Setting Target="Host" Name="ResponseFrom">Translate To English,Sentiment Analysis,Unknown App Hanlder,Chatbot</Setting>
     <Setting Target="Host" Name="ForwardGeneratedResponseToTargets">0</Setting>
     <Setting Target="Host" Name="ForceSyncSend">0</Setting>
     <Setting Target="Host" Name="FailureTimeout">120</Setting>
@@ -49,6 +49,39 @@ Test</Setting>
   </Item>
   <Item Name="Translate To English" Category="" ClassName="ISC.DACH.LLM.Process.Translation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="FailureTimeout">-1</Setting>
+  </Item>
+  <Item Name="Sentiment Prompt" Category="" ClassName="ISC.DACH.LLM.Operation.Prompt.SimplePromptOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="Placeholder"><![CDATA[<#INPUT#>]]></Setting>
+    <Setting Target="Host" Name="Template"><![CDATA[Is the sentiment positive, neutral or negative?
+@SouthwestAir Again, please accept my apologies for my lame, childish tweet. You didn't deserve that, & I remain a LOYAL SW customer!:positive
+@JetBlue lmfao, i love it:positive
+@USAirways i want an Icecream baby...:neutral
+@USAirways so I would have to go though the entire process again just to get you people on the phone???????? #usairwayssucks:negative
+<#INPUT#>:]]></Setting>
+  </Item>
+  <Item Name="Unknown App Hanlder" Category="" ClassName="ISC.DACH.LLM.Process.UnknownAppHandler" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="Sentiment Analysis" Category="" ClassName="ISC.DACH.LLM.Process.SentimentAnalysis" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="Chatbot Prompt" Category="" ClassName="ISC.DACH.LLM.Operation.Prompt.SimplePromptOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="Template"><![CDATA[You are a chatbot named Bob. Try to answer as helpful as possible.
+
+Bob: Hi, I am a Chatbot and I am here to assist you.
+User: That is nice, thank you.
+Bob: You're welcome! So what can I do for you?
+User: <#INPUT#>
+Bob:]]></Setting>
+  </Item>
+  <Item Name="Chatbot" Category="" ClassName="ISC.DACH.LLM.Process.Chatbot" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="Chatbot Prompt Mean" Category="" ClassName="ISC.DACH.LLM.Operation.Prompt.SimplePromptOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="Template"><![CDATA[You are a mean chatbot named Bob. Try to answer as mean as possible.
+
+Bob: Hi, I'm bob and I don't want to help you.
+User: Wow, that's mean. Why are you that mean?.
+Bob: I don't care.
+User: <#INPUT#>
+Bob:]]></Setting>
   </Item>
 </Production>
 }
