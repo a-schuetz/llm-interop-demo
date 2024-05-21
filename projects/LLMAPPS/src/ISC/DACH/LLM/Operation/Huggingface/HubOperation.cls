@@ -42,13 +42,8 @@ Method OnGenerateRequest(pRequest As ISC.DACH.LLM.Operation.GenerateRequest, Out
     #dim sc As %Status = $$$OK
     Set pResponse = ##class(ISC.DACH.LLM.Operation.GenerateResponse).%New()
     try {
-        If (..CustomModel '= "") {
-            Set tModel = ..CustomModel
-        } Else {
-            Set tModel = ..Model
-        }
-        Set pResponse.Response = ..GenerateRequest(pRequest, tModel)
-        Set pResponse.Model = tModel
+        Set pResponse.Response = ..GenerateRequest(pRequest)
+        Set pResponse.Model = ..ActualModel
     } catch ex {
         set sc = ex.AsStatus()
     }
@@ -56,7 +51,7 @@ Method OnGenerateRequest(pRequest As ISC.DACH.LLM.Operation.GenerateRequest, Out
     quit sc
 }
 
-Method GenerateRequest(pRequest As ISC.DACH.LLM.Operation.GenerateRequest, pModel As %String) As %String [ Language = python ]
+Method GenerateRequest(pRequest As ISC.DACH.LLM.Operation.GenerateRequest) As %String [ Language = python ]
 {
     params = {
         "max_new_tokens": pRequest.MaxNewTokens,
@@ -65,7 +60,7 @@ Method GenerateRequest(pRequest As ISC.DACH.LLM.Operation.GenerateRequest, pMode
         "top_p": pRequest.TopP,        
     }
 
-    self.Trace("HuggingfaceHub request - Model:" + pModel + " - Params: " + self.ToJson(params))
+    self.Trace("HuggingfaceHub request - Params: " + self.ToJson(params))
     output = self.Client.text_generation(prompt=pRequest.Prompt, 
                                          max_new_tokens = pRequest.MaxNewTokens,
                                          do_sample=pRequest.TopK != 1,                                          
