@@ -47,7 +47,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <assign property="context.LangIdResponse" value="callresponse" action="set" languageOverride="" />
 </response>
 </call>
-<call name='LLM Translation' target='Huggingface Hub' async='1' xpos='200' ypos='550' >
+<call name='LLM Translation' target='OpenAI API' async='1' xpos='200' ypos='550' >
 <annotation><![CDATA[Call LLM BO to generate translation]]></annotation>
 <request type='ISC.DACH.LLM.Operation.GenerateRequest' >
 <assign property="callrequest.Prompt" value="context.TranslationPrompt.Prompt" action="set" languageOverride="" />

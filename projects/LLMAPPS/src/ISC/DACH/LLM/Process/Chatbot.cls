@@ -25,7 +25,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <assign property="context.PromptResponse" value="callresponse" action="set" languageOverride="" />
 </response>
 </call>
-<call name='LLM' target='Huggingface Hub' async='0' xpos='200' ypos='350' >
+<call name='LLM' target='OpenAI API' async='0' xpos='200' ypos='350' >
 <annotation><![CDATA[Call LLM BO to generate output]]></annotation>
 <request type='ISC.DACH.LLM.Operation.GenerateRequest' >
 <assign property="callrequest.Prompt" value="context.PromptResponse.Prompt" action="set" languageOverride="" />

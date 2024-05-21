@@ -20,9 +20,17 @@ Method OnExtractRequest(pRequest As ISC.DACH.LLM.Response.Operation.ExtractReque
     Set pResponse = ##class(ISC.DACH.LLM.Response.Operation.ExtractResponse).%New()
     Set tSeperator = $REPLACE(pRequest.SeperatorString, "\n", $CHAR(10))
     Set tResponse = $ZSTRIP($PIECE(pRequest.ModelResponse, tSeperator, 1, 1), "<>W")
+
+    if (pRequest.StripPunctuation) {
+      Set tResponse = $ZSTRIP(tResponse, ">P")
+    }
+    if (pRequest.LowerOutput) {
+      Set tResponse = $ZCONVERT(tResponse,"L")
+    }
+
     Set pResponse.ExtractedResponse = tResponse
 
-
+    // Validate response
     if (pRequest.ExpectedValues '= "") {
         Set tValid = 0
 

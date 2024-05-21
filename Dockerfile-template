@@ -12,8 +12,7 @@ COPY --chown="${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP}" <PASSWORD_FILE>  
 RUN /usr/irissys/dev/Container/changePassword.sh /home/irisowner/password.txt \
     && rm /home/irisowner/password.txt.done
 
-RUN python3 -m pip install --target /usr/irissys/mgr/python ollama
-RUN python3 -m pip install --target /usr/irissys/mgr/python huggingface_hub
+RUN python3 -m pip install --target /usr/irissys/mgr/python ollama huggingface_hub openai
 
 
 

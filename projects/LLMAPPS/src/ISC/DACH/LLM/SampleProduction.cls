@@ -9,12 +9,6 @@ XData ProductionDefinition
   <Item Name="Pull Ollama Model" Category="" ClassName="ISC.DACH.LLM.Operation.Ollama.ModelPullOperation" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="OllamaHost">http://ollama:11434</Setting>
   </Item>
-  <Item Name="Huggingface Hub" Category="" ClassName="ISC.DACH.LLM.Operation.Huggingface.HubOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="Model">meta-llama/Meta-Llama-3-70B-Instruct</Setting>
-    <Setting Target="Host" Name="APICredentials">HuggingFaceToken</Setting>
-    <Setting Target="Host" Name="CustomModel"></Setting>
-    <Setting Target="Host" Name="FailureTimeout">120</Setting>
-  </Item>
   <Item Name="Ollama Local" Category="" ClassName="ISC.DACH.LLM.Operation.Ollama.OllamaOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="Model">llama3:text</Setting>
     <Setting Target="Host" Name="OllamaHost">http://ollama:11434</Setting>
@@ -52,12 +46,8 @@ Test</Setting>
   </Item>
   <Item Name="Sentiment Prompt" Category="" ClassName="ISC.DACH.LLM.Operation.Prompt.SimplePromptOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="Placeholder"><![CDATA[<#INPUT#>]]></Setting>
-    <Setting Target="Host" Name="Template"><![CDATA[Is the sentiment positive, neutral or negative?
-@SouthwestAir Again, please accept my apologies for my lame, childish tweet. You didn't deserve that, & I remain a LOYAL SW customer!:positive
-@JetBlue lmfao, i love it:positive
-@USAirways i want an Icecream baby...:neutral
-@USAirways so I would have to go though the entire process again just to get you people on the phone???????? #usairwayssucks:negative
-<#INPUT#>:]]></Setting>
+    <Setting Target="Host" Name="Template"><![CDATA[Answer using only positive, neutral or negative. What is the sentiment of the following:
+<#INPUT#>]]></Setting>
   </Item>
   <Item Name="Unknown App Hanlder" Category="" ClassName="ISC.DACH.LLM.Process.UnknownAppHandler" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
@@ -82,6 +72,11 @@ User: Wow, that's mean. Why are you that mean?.
 Bob: I don't care.
 User: <#INPUT#>
 Bob:]]></Setting>
+  </Item>
+  <Item Name="OpenAI API" Category="" ClassName="ISC.DACH.LLM.Operation.OpenAI.APIOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="OrganizationCredentials">OpenAIOrganization</Setting>
+    <Setting Target="Host" Name="ProjectCredentials">OpenAIProject</Setting>
+    <Setting Target="Host" Name="Model">gpt-4o</Setting>
   </Item>
 </Production>
 }

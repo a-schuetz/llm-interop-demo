@@ -17,6 +17,14 @@
  set token = file.ReadLine()
  write ##class(Ens.Config.Credentials).SetCredential("HuggingFaceToken", "Token", token)
 
+ set file = ##class(%File).%New("<#PROJECTDIR#>/OpenAI.secret" )
+ write file.Open("R")
+ set orgID = file.ReadLine()
+ set projectID = file.ReadLine()
+ set projectKey = file.ReadLine()
+ write ##class(Ens.Config.Credentials).SetCredential("OpenAIOrganization", "OrgID", orgID)
+ write ##class(Ens.Config.Credentials).SetCredential("OpenAIProject", projectID, projectKey)
+
  do $System.OBJ.LoadDir("<#PROJECTDIR#>/src","ck",,1)
  do ##class(Ens.Director).SetAutoStart("ISC.DACH.LLM.SampleProduction",1)
  set ^EnsPortal.Settings("SuperUser","LastProduction") = "ISC.DACH.LLM.SampleProduction"

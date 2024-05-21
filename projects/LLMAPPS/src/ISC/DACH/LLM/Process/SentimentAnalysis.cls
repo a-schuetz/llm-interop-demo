@@ -25,12 +25,13 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <assign property="context.PromptResponse" value="callresponse" action="set" languageOverride="" />
 </response>
 </call>
-<call name='LLM' target='Huggingface Hub' async='0' xpos='200' ypos='350' >
+<call name='LLM' target='OpenAI API' async='0' xpos='200' ypos='350' >
 <annotation><![CDATA[Call LLM BO to generate output]]></annotation>
 <request type='ISC.DACH.LLM.Operation.GenerateRequest' >
 <assign property="callrequest.Prompt" value="context.PromptResponse.Prompt" action="set" languageOverride="" />
 <assign property="callrequest.MaxNewTokens" value="10" action="set" languageOverride="" />
 <assign property="callrequest.TopK" value="1" action="set" languageOverride="" />
+<assign property="callrequest.TopP" value=".01" action="set" languageOverride="" />
 </request>
 <response type='ISC.DACH.LLM.Operation.GenerateResponse' >
 <assign property="context.ModelResponse" value="callresponse" action="set" languageOverride="" />
@@ -40,6 +41,8 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <request type='ISC.DACH.LLM.Response.Operation.ExtractRequest' >
 <assign property="callrequest.ModelResponse" value="context.ModelResponse.Response" action="set" languageOverride="" />
 <assign property="callrequest.ExpectedValues" value="&quot;positive,neutral,negative&quot;" action="set" languageOverride="" />
+<assign property="callrequest.StripPunctuation" value="1" action="set" languageOverride="" />
+<assign property="callrequest.LowerOutput" value="1" action="set" languageOverride="" />
 </request>
 <response type='ISC.DACH.LLM.Response.Operation.ExtractResponse' >
 <assign property="response.AppResponse" value="callresponse.ExtractedResponse" action="set" languageOverride="" />
