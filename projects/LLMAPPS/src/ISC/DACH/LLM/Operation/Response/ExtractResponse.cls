@@ -1,4 +1,4 @@
-Class ISC.DACH.LLM.Response.Operation.ExtractResponse Extends Ens.Response
+Class ISC.DACH.LLM.Operation.Response.ExtractResponse Extends Ens.Response
 {
 
 Property ExtractedResponse As %String(MAXLEN = "");

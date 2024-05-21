@@ -60,18 +60,18 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </call>
 <sync name='Wait for responses' calls='LLM Id,LLM Translation' type='all' xpos='200' ypos='650' />
 <call name='Extract Translation' target='Extract Response' async='0' xpos='200' ypos='750' >
-<request type='ISC.DACH.LLM.Response.Operation.ExtractRequest' >
+<request type='ISC.DACH.LLM.Operation.Response.ExtractRequest' >
 <assign property="callrequest.ModelResponse" value="context.TranslationResponse.Response" action="set" languageOverride="" />
 </request>
-<response type='ISC.DACH.LLM.Response.Operation.ExtractResponse' >
+<response type='ISC.DACH.LLM.Operation.Response.ExtractResponse' >
 <assign property="response.AppResponse" value="callresponse.ExtractedResponse" action="set" languageOverride="" />
 </response>
 </call>
 <call name='Extract LangId' target='Extract Response' async='0' xpos='200' ypos='850' >
-<request type='ISC.DACH.LLM.Response.Operation.ExtractRequest' >
+<request type='ISC.DACH.LLM.Operation.Response.ExtractRequest' >
 <assign property="callrequest.ModelResponse" value="context.LangIdResponse.Response" action="set" languageOverride="" />
 </request>
-<response type='ISC.DACH.LLM.Response.Operation.ExtractResponse' >
+<response type='ISC.DACH.LLM.Operation.Response.ExtractResponse' >
 <assign property="response.AdditionalResponses" value="callresponse.ExtractedResponse" action="set" languageOverride="" key="&quot;language&quot;" />
 </response>
 </call>

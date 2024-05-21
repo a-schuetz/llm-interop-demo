@@ -38,13 +38,13 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </response>
 </call>
 <call name='Extract' target='Extract Response' async='0' xpos='200' ypos='450' >
-<request type='ISC.DACH.LLM.Response.Operation.ExtractRequest' >
+<request type='ISC.DACH.LLM.Operation.Response.ExtractRequest' >
 <assign property="callrequest.ModelResponse" value="context.ModelResponse.Response" action="set" languageOverride="" />
 <assign property="callrequest.ExpectedValues" value="&quot;positive,neutral,negative&quot;" action="set" languageOverride="" />
 <assign property="callrequest.StripPunctuation" value="1" action="set" languageOverride="" />
 <assign property="callrequest.LowerOutput" value="1" action="set" languageOverride="" />
 </request>
-<response type='ISC.DACH.LLM.Response.Operation.ExtractResponse' >
+<response type='ISC.DACH.LLM.Operation.Response.ExtractResponse' >
 <assign property="response.AppResponse" value="callresponse.ExtractedResponse" action="set" languageOverride="" />
 </response>
 </call>

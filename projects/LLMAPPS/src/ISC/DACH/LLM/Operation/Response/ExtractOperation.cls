@@ -1,4 +1,4 @@
-Class ISC.DACH.LLM.Response.Operation.ExtractOperation Extends Ens.BusinessOperation
+Class ISC.DACH.LLM.Operation.Response.ExtractOperation Extends Ens.BusinessOperation
 {
 
 Parameter ADAPTER;
@@ -8,16 +8,16 @@ Parameter INVOCATION = "Queue";
 XData MessageMap
 {
 <MapItems>
-  <MapItem MessageType="ISC.DACH.LLM.Response.Operation.ExtractRequest">
+  <MapItem MessageType="ISC.DACH.LLM.Operation.Response.ExtractRequest">
     <Method>OnExtractRequest</Method>
   </MapItem>
 </MapItems>
 }
 
-Method OnExtractRequest(pRequest As ISC.DACH.LLM.Response.Operation.ExtractRequest, Output pResponse As ISC.DACH.LLM.Response.Operation.ExtractResponse) As %Status
+Method OnExtractRequest(pRequest As ISC.DACH.LLM.Operation.Response.ExtractRequest, Output pResponse As ISC.DACH.LLM.Operation.Response.ExtractResponse) As %Status
 {
     #dim tSC As %Status = $$$OK
-    Set pResponse = ##class(ISC.DACH.LLM.Response.Operation.ExtractResponse).%New()
+    Set pResponse = ##class(ISC.DACH.LLM.Operation.Response.ExtractResponse).%New()
     Set tSeperator = $REPLACE(pRequest.SeperatorString, "\n", $CHAR(10))
     Set tResponse = $ZSTRIP($PIECE(pRequest.ModelResponse, tSeperator, 1, 1), "<>W")
 

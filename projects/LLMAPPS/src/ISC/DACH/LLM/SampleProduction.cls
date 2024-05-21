@@ -14,7 +14,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="OllamaHost">http://ollama:11434</Setting>
     <Setting Target="Host" Name="FailureTimeout">300</Setting>
   </Item>
-  <Item Name="Extract Response" Category="" ClassName="ISC.DACH.LLM.Response.Operation.ExtractOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="Extract Response" Category="" ClassName="ISC.DACH.LLM.Operation.Response.ExtractOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
   <Item Name="LLM App Service" Category="" ClassName="ISC.DACH.LLM.Service.AppService" PoolSize="0" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="TargetConfigName">LLM App Router</Setting>
@@ -27,7 +27,8 @@ XData ProductionDefinition
     <Setting Target="Host" Name="FailureTimeout">120</Setting>
   </Item>
   <Item Name="Translation Prompt" Category="" ClassName="ISC.DACH.LLM.Operation.Prompt.SimplePromptOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="Template"><![CDATA[La marine américaine a également déclaré qu'elle enquêtait sur l'incident.:The US Navy also said it was investigating the incident.
+    <Setting Target="Host" Name="Template"><![CDATA[Translate to English.
+La marine américaine a également déclaré qu'elle enquêtait sur l'incident.:The US Navy also said it was investigating the incident.
 Direkt am Flussufer steht das blaue Haus.:The blue house stands directly on the riverbank.
 Il cane corre sul prato.:The dog runs on the lawn.
 <#INPUT#>:]]></Setting>
@@ -46,7 +47,7 @@ Test</Setting>
   </Item>
   <Item Name="Sentiment Prompt" Category="" ClassName="ISC.DACH.LLM.Operation.Prompt.SimplePromptOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="Placeholder"><![CDATA[<#INPUT#>]]></Setting>
-    <Setting Target="Host" Name="Template"><![CDATA[Answer using only positive, neutral or negative. What is the sentiment of the following:
+    <Setting Target="Host" Name="Template"><![CDATA[Answer using only positive, neutral or negative. What is the sentiment of the following statement:
 <#INPUT#>]]></Setting>
   </Item>
   <Item Name="Unknown App Hanlder" Category="" ClassName="ISC.DACH.LLM.Process.UnknownAppHandler" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
@@ -76,7 +77,7 @@ Bob:]]></Setting>
   <Item Name="OpenAI API" Category="" ClassName="ISC.DACH.LLM.Operation.OpenAI.APIOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="OrganizationCredentials">OpenAIOrganization</Setting>
     <Setting Target="Host" Name="ProjectCredentials">OpenAIProject</Setting>
-    <Setting Target="Host" Name="Model">gpt-4o</Setting>
+    <Setting Target="Host" Name="Model">gpt-3.5-turbo</Setting>
   </Item>
 </Production>
 }

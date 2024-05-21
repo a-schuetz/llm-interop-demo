@@ -1,4 +1,4 @@
-Class ISC.DACH.LLM.Response.Operation.ExtractRequest Extends Ens.Request
+Class ISC.DACH.LLM.Operation.Response.ExtractRequest Extends Ens.Request
 {
 
 /// Model response
