@@ -5,12 +5,11 @@
 .vscode/**/*
 *.code-workspace
 
-# Files build from template by setup.sh
-
-Dockerfile
-docker-compose.yaml
-docker-compose.build.yaml
-docker_volume/*
+# Project files
+volumes/*
+**/*.key
+**/*.tgz
+**/*.tar.gz
 
 # Key and secret files
 
