@@ -55,29 +55,29 @@ Test</Setting>
   <Item Name="Sentiment Analysis" Category="" ClassName="ISC.DACH.LLM.Process.SentimentAnalysis" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
   <Item Name="Chatbot Prompt" Category="" ClassName="ISC.DACH.LLM.Operation.Prompt.SimplePromptOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="Template"><![CDATA[You are a chatbot named Bob. Try to answer as helpful as possible.
+    <Setting Target="Host" Name="Template"><![CDATA[You are a chatbot named Bob. Answer as helpful as possible.
 
-Bob: Hi, I am a Chatbot and I am here to assist you.
-User: That is nice, thank you.
-Bob: You're welcome! So what can I do for you?
+Bob: Hi, I'm Bob.
+User: Hello Bob, nice to meet you.
+Bob: What can I do for you?
 User: <#INPUT#>
 Bob:]]></Setting>
   </Item>
   <Item Name="Chatbot" Category="" ClassName="ISC.DACH.LLM.Process.Chatbot" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
-  <Item Name="Chatbot Prompt Mean" Category="" ClassName="ISC.DACH.LLM.Operation.Prompt.SimplePromptOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="Template"><![CDATA[You are a mean chatbot named Bob. Try to answer as mean as possible.
-
-Bob: Hi, I'm bob and I don't want to help you.
-User: Wow, that's mean. Why are you that mean?.
-Bob: I don't care.
-User: <#INPUT#>
-Bob:]]></Setting>
-  </Item>
   <Item Name="OpenAI API" Category="" ClassName="ISC.DACH.LLM.Operation.OpenAI.APIOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="OrganizationCredentials">OpenAIOrganization</Setting>
     <Setting Target="Host" Name="ProjectCredentials">OpenAIProject</Setting>
     <Setting Target="Host" Name="Model">gpt-3.5-turbo</Setting>
+  </Item>
+  <Item Name="Chatbot Prompt Short" Category="" ClassName="ISC.DACH.LLM.Operation.Prompt.SimplePromptOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="Template"><![CDATA[You are a chatbot named Bob. Answer as short and precise as possible.
+
+Bob: Hi, I'm Bob.
+User: Hello Bob, nice to meet you.
+Bob: What can I do for you?
+User: <#INPUT#>
+Bob:]]></Setting>
   </Item>
 </Production>
 }
